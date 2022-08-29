@@ -1,0 +1,10 @@
+# Turn Rewrite Engine On
+RewriteEngine on
+
+# Rewrite for all .php extension files
+RewriteRule ^home$ index.php [NC,L]
+RewriteRule ^about$ about.php [NC,L]
+RewriteRule ^contact$ contact.php [NC,L]
+RewriteRule ^properties$ properties.php [NC,L]
+RewriteRule ^blogs$ blogs.php [NC,L]
+
