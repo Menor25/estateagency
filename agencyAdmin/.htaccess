@@ -1,0 +1,20 @@
+# Turn Rewrite Engine On
+RewriteEngine on
+
+# Rewrite for all .php extension files
+RewriteRule ^home$ index.php [NC,L]
+RewriteRule ^property-list$ property-list.php [NC,L]
+RewriteRule ^property-grid$ property-grid.php [NC,L]
+RewriteRule ^add-property$ add-property.php [NC,L]
+RewriteRule ^add-agent$ add-agent.php [NC,L]
+RewriteRule ^edit-agent$ edit-agent.php [NC,L]
+RewriteRule ^agent$ agent.php [NC,L]
+RewriteRule ^profile$ profile.php [NC,L]
+RewriteRule ^login$ login.php [NC,L]
+RewriteRule ^user-profile$ user-profile.php [NC,L]
+RewriteRule ^logout$ logout.php [NC,L]
+RewriteRule ^property-detail$ property-detail.php [NC,L]
+RewriteRule ^profile$ profile.php [NC,L]
+RewriteRule ^amenities-list$ amenities-list.php [NC,L]
+RewriteRule ^add-amenities$ add-amenities.php [NC,L]
+RewriteRule ^settings$ settings.php [NC,L]

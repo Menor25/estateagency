@@ -8,3 +8,5 @@ RewriteRule ^contact$ contact.php [NC,L]
 RewriteRule ^properties$ properties.php [NC,L]
 RewriteRule ^blogs$ blogs.php [NC,L]
 
+
+
