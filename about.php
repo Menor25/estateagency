@@ -28,9 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="properties">Property</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="blogs">Blog</a>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Pages
@@ -47,10 +47,10 @@
                 </li>
             </ul>
         </div>
-        <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+        <!-- <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
             data-target="#navbarTogglerDemo01" aria-expanded="false">
             <span class="fa fa-search" aria-hidden="true"></span>
-        </button>
+        </button> -->
     </div>
 </nav><!-- End Header/Navbar -->
   <main id="main">

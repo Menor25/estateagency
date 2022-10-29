@@ -43,9 +43,9 @@
 <body>
 
     <!-- ======= Property Search Section ======= -->
-    <div class="click-closed"></div>
+    <!-- <div class="click-closed"></div> -->
     <!--/ Form Search Star /-->
-    <div class="box-collapse">
+    <!-- <div class="box-collapse">
         <div class="title-box-d">
             <h3 class="title-d">Search Property</h3>
         </div>
@@ -135,6 +135,7 @@
                 </div>
             </form>
         </div>
-    </div><!-- End Property Search Section -->
+    </div> -->
+    <!-- End Property Search Section -->
 
     

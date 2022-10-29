@@ -8,6 +8,8 @@ RewriteRule ^contact$ contact.php [NC,L]
 RewriteRule ^properties$ properties.php [NC,L]
 RewriteRule ^property-view$ property-view.php [NC,L]
 RewriteRule ^blogs$ blogs.php [NC,L]
+RewriteRule ^agents$ agents.php [NC,L]
+RewriteRule ^agent-single$ agent-single.php [NC,L]
 
 
 

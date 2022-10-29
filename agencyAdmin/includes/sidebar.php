@@ -88,7 +88,7 @@
                             <!-- <li><a href="update-settings">Update Settings</a></li> -->
                         </ul>
                     </li>
-                    <li><a href="javascript:void(0);" class="menu-toggle"><i
+                    <!-- <li><a href="javascript:void(0);" class="menu-toggle"><i
                                 class="zmdi zmdi-apps"></i><span>App</span></a>
                         <ul class="ml-menu">
                             <li><a href="mail-inbox.html">Inbox</a></li>
@@ -97,76 +97,10 @@
                             <li><a href="contact.html">Contact list</a></li>
                             <li><a href="blog-dashboard.html">Blog</a></li>
                         </ul>
-                    </li>
-                    <li><a href="groups.html"><i class="zmdi zmdi-ungroup"></i><span>Groups</span></a>
-                    <li><a href="file-dashboard.html"><i class="zmdi zmdi-file-text"></i><span>File Manager</span></a>
-                    <li><a href="jvectormap.html"><i class="zmdi zmdi-map"></i><span>Site Location</span></a>
-                    <li class="header">EXTRA COMPONENTS</li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>User
-                                Interface (UI)</span></a>
-                        <ul class="ml-menu">
-                            <li><a href="ui_kit.html">UI KIT</a></li>
-                            <li><a href="alerts.html">Alerts</a></li>
-                            <li><a href="collapse.html">Collapse</a></li>
-                            <li><a href="colors.html">Colors</a></li>
-                            <li><a href="dialogs.html">Dialogs</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="list-group.html">List Group</a></li>
-                            <li><a href="media-object.html">Media Object</a></li>
-                            <li><a href="modals.html">Modals</a></li>
-                            <li><a href="notifications.html">Notifications</a></li>
-                            <li><a href="progressbars.html">Progress Bars</a></li>
-                            <li><a href="range-sliders.html">Range Sliders</a></li>
-                            <li><a href="sortable-nestable.html">Sortable & Nestable</a></li>
-                            <li><a href="tabs.html">Tabs</a></li>
-                            <li><a href="waves.html">Waves</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle"><i
-                                class="zmdi zmdi-assignment"></i><span>Forms</span></a>
-                        <ul class="ml-menu">
-                            <li><a href="basic-form-elements.html">Basic Elements</a> </li>
-                            <li><a href="advanced-form-elements.html">Advanced Elements</a> </li>
-                            <li><a href="form-examples.html">Form Examples</a> </li>
-                            <li><a href="form-validation.html">Form Validation</a> </li>
-                            <li><a href="form-wizard.html">Form Wizard</a> </li>
-                            <li><a href="form-editors.html">Editors</a> </li>
-                            <li><a href="form-upload.html">File Upload</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle"><i
-                                class="zmdi zmdi-grid"></i><span>Tables</span></a>
-                        <ul class="ml-menu">
-                            <li><a href="normal-tables.html">Normal Tables</a></li>
-                            <li><a href="jquery-datatable.html">Jquery Datatables</a></li>
-                            <li><a href="editable-table.html">Editable Tables</a></li>
-                            <li><a href="table-color.html">Tables Color</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle"><i
-                                class="zmdi zmdi-chart"></i><span>Charts</span> </a>
-                        <ul class="ml-menu">
-                            <li><a href="c3chart.html">C3 Chart</a></li>
-                            <li><a href="morris.html">Morris</a></li>
-                            <li><a href="flot.html">Flot</a></li>
-                            <li><a href="chartjs.html">ChartJS</a></li>
-                            <li><a href="sparkline.html">Sparkline</a></li>
-                            <li><a href="jquery-knob.html">Jquery Knob</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle"><i
-                                class="zmdi zmdi-delicious"></i><span>Widgets</span></a>
-                        <ul class="ml-menu">
-                            <li><a href="widgets-app.html">Apps Widgetse</a></li>
-                            <li><a href="widgets-data.html">Data Widgetse</a></li>
-                        </ul>
-                    </li>
-                    <li>
+                    </li> -->
+                    
+ 
+                    <!-- <li>
                         <a href="javascript:void(0);" class="menu-toggle"><i
                                 class="zmdi zmdi-lock"></i><span>Authentication</span></a>
                         <ul class="ml-menu">
@@ -210,7 +144,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

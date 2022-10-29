@@ -237,6 +237,37 @@ function if_exists($col_name, $col_value, $table)
     }
 }
 
+/**
+ * Function that returns the number of rows
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $column
+ * 
+ * @return true
+ */
+
+function row_count($col_name, $col_value, $table)
+{
+    global $conn;
+
+    $query = "SELECT * FROM {$table} WHERE {$col_name} = '$col_value'";
+    $result = mysqli_query($conn, $query);
+
+
+    confirmQuery($result);
+
+    if(mysqli_num_rows($result) > 0) {
+        $number_rows = mysqli_num_rows($result);
+        return $number_rows;
+    } else {
+        return false;
+    }
+}
+
+
 
 /**
  * Function that process image
