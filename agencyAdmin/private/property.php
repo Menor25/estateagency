@@ -6,7 +6,7 @@ require_once "db_object.php";
         protected static $db_table_fields = array('agent_id', 'property_name', 'property_desc', 'property_type', 
                                                 'sales_type', 'property_price', 'property_address', 'bedrooms', 
                                                  'square_ft', 'car_parking', 'year_built', 'dinning_room', 'kitchen', 
-                                                'living_room', 'master_bedroom', 'other_room', 
+                                                'living_room', 'master_bedroom', 'other_room', 'city',  
                                                 'state', 'country', 'swimming_pool', 'terrace', 'air_conditioning', 
                                                 'internet', 'balcony', 'cable_tv', 'computer', 'dishwasher', 
                                                 'near_green_zone', 'near_church', 'near_estate', 'near_school', 'near_hospital', 
@@ -29,6 +29,7 @@ require_once "db_object.php";
         public $living_room;
         public $master_bedroom;
         public $other_room;
+        public $city;
         public $state;
         public $country;
         public $swimming_pool;
@@ -47,7 +48,7 @@ require_once "db_object.php";
         public $cofee_pot;
 
         public $property_plan;
-        public $upload_directory = "\images\plan";
+        public $upload_directory = "/images/plan/";
         public $image_placeholder = "http://placehold.it/400x400&text=image";
 
     // This is passing $_FILES['uploaded_file'] as an argument
@@ -93,7 +94,7 @@ public function save_user_and_image()
                     return false;
         }
     
-        $target_path = SITE_ROOT . DS . 'estateAdmin' . DS . $this->upload_directory . DS . $this->property_plan;
+        $target_path = SITE_ROOT . DS . 'agencyAdmin' . DS . $this->upload_directory . DS . $this->property_plan;
     
     
         if(file_exists($target_path)) {

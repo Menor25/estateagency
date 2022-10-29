@@ -6,7 +6,7 @@ require_once "db_object.php";
         protected static $db_table_fields = array('first_name', 'last_name', 
                                                 'other_name', 'gender', 'biography', 
                                                 'phone', 'username', 'password', 
-                                                 'agent_photo', 'email', 'address', 'state', 
+                                                 'agent_photo', 'email', 'address', 'city', 'state', 
                                                 'country', 'facebook', 'twitter', 
                                                 'linkedin');
         
@@ -22,6 +22,7 @@ require_once "db_object.php";
         public $confirm_password;
         public $email;
         public $address;
+        public $city;
         public $state;
         public $country;
         public $facebook;

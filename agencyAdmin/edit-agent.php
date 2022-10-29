@@ -58,7 +58,7 @@ if (Is_Get_request()) {
         $a_id 		    = $agent['id'];
 	}
 }
-echo $decoded_id;
+//echo $decoded_id;
 ?>
 
 <!-- Left Sidebar -->

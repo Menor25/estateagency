@@ -7,6 +7,7 @@
      $agent_property = Agent::find_by_id($property_details->agent_id);
      $full_name = $agent_property->first_name . " " . $agent_property->last_name . " " . $agent_property->other_name;
 ?>
+
 <body class="theme-purple">
 
     <?php require_once "includes/loader.php"; ?>
@@ -97,83 +98,156 @@
                     </div>
                     <div class="card">
                         <div class="header">
-                            <h2><strong>General</strong> Amenities<small>Description Text Here...</small></h2>
-                            <ul class="header-dropdown">
-                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
-                                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="zmdi zmdi-more"></i> </a>
-                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else</a></li>
-                                    </ul>
-                                </li>
-                                <li class="remove">
-                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li>
-                            </ul>
+                            <h2><strong>General</strong> Amenities</h2>
+                           
                         </div>
                         <div class="body">
                             <div class="row clearfix">
                                 <div class="col-sm-4">
                                     <ul class="list-group">
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Swimming
-                                            pool</li>
+                                    <?php
+                                                if ($property_details->swimming_pool == 'Swimming Pool') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                        
+                                            
+                                                    <?php echo "Swimming pool";?>
+                                               
+                                        </li>
+                                        <?php  }
+                                            
+                                            ?>
+                                        <?php
+                                                if ($property_details->air_conditioning == 'Air Conditioning') {
+                                    ?>
                                         <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Air
-                                            conditioning</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Internet
+                                            <?php echo" Air conditioning"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Radio
+                                    <?php  }
+                                            
+                                        ?>
+                                    <?php
+                                                if ($property_details->internet == 'Internet') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Internet"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Balcony
+                                        <?php  }
+                                            
+                                        ?>
+                                    <?php
+                                                if ($property_details->balcony == 'Balcony') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Balcony"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Roof
-                                            terrace</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Cable TV
+                                        <?php  }
+                                            
+                                            ?>
+                                    <?php
+                                                if ($property_details->cable_tv == 'Cable TV') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Cable TV"; ?>
                                         </li>
-                                        <li class="list-group-item"><i
-                                                class="zmdi zmdi-check-circle mr-2"></i>Electricity</li>
+                                        <?php  }
+                                            
+                                            ?>
                                     </ul>
                                 </div>
                                 <div class="col-sm-4">
                                     <ul class="list-group">
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Terrace
+                                    <?php
+                                                if ($property_details->terrace == 'Terrace') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Terrace"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Cofee pot
+                                        <?php  }
+                                            
+                                            ?>
+                                        <?php
+                                                if ($property_details->cofee_pot == 'Cofee Pot') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Cofee Pot"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Oven</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Towelwes
+                                        <?php  }
+                                            
+                                            ?>
+                                    <?php
+                                                if ($property_details->near_estate == 'Near Estate') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Near Estate"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Computer
+                                        <?php  }
+                                            
+                                            ?>
+                                         <?php
+                                                if ($property_details->dishwasher == 'Dishwasher') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Dishwasher"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Grill
+                                        <?php  }
+                                            
+                                            ?>
+                                    <?php
+                                                if ($property_details->computer == 'Computer') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Dishwasher"; ?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Parquet
-                                        </li>
+                                        <?php  }
+                                            
+                                            ?>
                                     </ul>
                                 </div>
                                 <div class="col-sm-4">
                                     <ul class="list-group">
-                                        <li class="list-group-item"><i
-                                                class="zmdi zmdi-check-circle mr-2"></i>Dishwasher</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Near
-                                            Green Zone</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Near
-                                            Church</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Near
-                                            Hospital</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Near
-                                            School</li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Near Shop
+                                    <?php
+                                                if ($property_details->near_green_zone == 'Near Green Zone') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Near Green Zone";?>
                                         </li>
-                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>Natural
-                                            Gas</li>
+                                        <?php  }
+                                            
+                                            ?>
+                                            <?php
+                                                if ($property_details->near_church == 'Near Church') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                                <?php echo "Near Church";?>
+                                            </li>
+                                            <?php  }
+                                            
+                                            ?>
+                                            <?php
+                                                if ($property_details->near_hospital == 'Near Hospital') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Near Hospital"; ?>
+                                        </li>
+                                            <?php  }
+                                            
+                                            ?>
+                                            <?php
+                                                if ($property_details->near_school == 'Near School') {
+                                    ?>
+                                        <li class="list-group-item"><i class="zmdi zmdi-check-circle mr-2"></i>
+                                            <?php echo "Near School"; ?>
+                                        </li>
+                                            <?php  }
+                                            
+                                            ?>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <!-- <div class="card">
                         <div class="header">
                             <h2><strong>Location</strong> <small>Description text here...</small> </h2>
                         </div>
@@ -185,94 +259,56 @@
                                 src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=svdezAlqZP2WIeKGiLW4EUnoJvnxVP7i&amp;width=100%&amp;height=400&amp;lang=tr_TR&amp;sourceType=constructor&amp;scroll=true">
                             </script>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="card">
-                        <div class="body text-center">
-                            <a href="#"><img src="../assets/images/sm/avatar1.jpg" class="rounded-circle"
-                                    alt="profile-image"></a>
-                            <h4 class="m-t-10">Eliana Smith</h4>
+                        <div class="body text-center" >
+                            
+                                <img src="<?= $agent_property->agent_photo; ?>" 
+                                class="rounded-circle" alt="profile-image" style="" width="300px" height="300px">
+                            <h4 class="m-t-10"><?= $full_name; ?></h4>
                             <div class="col-12">
                                 <ul class="d-flex justify-content-center list-unstyled">
-                                    <li class="w30"><a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a>
+                                    <li class="w30"><a title="facebook" href="<?= $agent_property->facebook; ?>"><i class="zmdi zmdi-facebook"></i></a>
                                     </li>
-                                    <li class="w30"><a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a>
+                                    <li class="w30"><a title="twitter" href="<?= $agent_property->twitter; ?>"><i class="zmdi zmdi-twitter"></i></a>
                                     </li>
-                                    <li class="w30"><a title="instagram" href="#"><i
-                                                class="zmdi zmdi-instagram"></i></a></li>
+                                    <li class="w30"><a title="linkedin" href="<?= $agent_property->linkedin; ?>"><i
+                                                class="zmdi zmdi-linkedin"></i></a></li>
                                 </ul>
-                                <p class="text-muted">795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
+                                <p class="text-muted"><?= $agent_property->address; ?>, <?= $agent_property->city; ?></p>
                             </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <h5>18</h5>
-                                    <small>Files</small>
-                                </div>
-                                <div class="col-4">
-                                    <h5>2GB</h5>
-                                    <small>Used</small>
-                                </div>
-                                <div class="col-4">
-                                    <h5>65,6$</h5>
-                                    <small>Spent</small>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="card">
                         <div class="header">
-                            <h2><strong>Request</strong> Inquiry</h2>
-                            <ul class="header-dropdown">
-                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
-                                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="zmdi zmdi-more"></i> </a>
-                                    <ul class="dropdown-menu dropdown-menu-right slideUp float-right">
-                                        <li><a href="javascript:void(0);">Edit</a></li>
-                                        <li><a href="javascript:void(0);">Delete</a></li>
-                                        <li><a href="javascript:void(0);">Report</a></li>
-                                    </ul>
-                                </li>
-                                <li class="remove">
-                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li>
-                            </ul>
+                            <h2><strong>Agent</strong> Contact</h2>
+                            
                         </div>
                         <div class="body">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name">
+                            <p class="text-muted"><strong>Mobile:</strong> <?= $agent_property->phone; ?></p>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Mobile No.">
-                            </div>
+                            </div> -->
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Email">
+                            <p class="text-muted"><strong>Email:</strong> <?= $agent_property->email; ?></p>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <textarea rows="4" class="form-control no-resize"
                                     placeholder="Please type what you want..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-round">Submit</button>
-                            <button type="submit" class="btn btn-default btn-round btn-simple">Cancel</button>
+                            <button type="submit" class="btn btn-default btn-round btn-simple">Cancel</button> -->
                         </div>
                     </div>
                     <div class="card">
                         <div class="header">
-                            <h2><strong>Location</strong></h2>
-                            <ul class="header-dropdown">
-                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
-                                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="zmdi zmdi-more"></i> </a>
-                                    <ul class="dropdown-menu dropdown-menu-right slideUp float-right">
-                                        <li><a href="javascript:void(0);">Edit</a></li>
-                                        <li><a href="javascript:void(0);">Delete</a></li>
-                                        <li><a href="javascript:void(0);">Report</a></li>
-                                    </ul>
-                                </li>
-                                <li class="remove">
-                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li>
-                            </ul>
+                            <h2><strong>Property Details</strong></h2>
+                            
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -280,48 +316,38 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">Price:</th>
-                                            <td>$390,000</td>
+                                            <td><?= $property_details->property_price; ?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Contract type: </th>
-                                            <td><span class="badge badge-primary">For Sale</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Bathrooms:</th>
-                                            <td>1.5</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Square ft:</th>
-                                            <td>468</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Garage Spaces:</th>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Land Size:</th>
-                                            <td>721 m²</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Floors:</th>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Listed for:</th>
-                                            <td>15 days</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Available:</th>
-                                            <td>Immediately</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Pets:</th>
-                                            <td>Pets Allowed</td>
+                                            <td><span class="badge badge-primary"><?= $property_details->sales_type; ?></span></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Bedrooms:</th>
-                                            <td>3</td>
+                                            <td><?= $property_details->bedrooms; ?></td>
                                         </tr>
+                                        <tr>
+                                            <th scope="row">Square ft:</th>
+                                            <td><?= $property_details->square_ft; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Garage Spaces:</th>
+                                            <td><?= $property_details->car_parking; ?></td>
+                                        </tr>
+
+                                        <!-- <tr>
+                                            <th scope="row">Listed for:</th>
+                                            <td>15 days</td>
+                                        </tr> -->
+                                        <!-- <tr>
+                                            <th scope="row">Available:</th>
+                                            <td>Immediately</td>
+                                        </tr> -->
+                                        <!-- <tr>
+                                            <th scope="row">Pets:</th>
+                                            <td>Pets Allowed</td>
+                                        </tr> -->
+                                        
                                     </tbody>
                                 </table>
                             </div>

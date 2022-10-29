@@ -734,3 +734,731 @@ function logout()
 
         Redirect_to("login");
 }
+
+/**
+ * Function that Update agent details
+ * 
+ * Accept all the inputs
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $agent_name 
+ * @param string $email 
+ * 
+ * @return school staff
+ */
+
+function editSetting($company_address, $city, $state, $country, $company_email, $company_phone,  
+    $company_mobile, $terms_of_usage, $privacy_policy, $international_office, $company_logo, $facebook,
+    $twitter, $linkedin, $instagram, $id) 
+{
+    global $conn;
+    global $error;
+
+    if (isset($company_address) && $company_address == " ") {
+        $_SESSION[$error] = "Please enter the company address"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($city) && $city == " ") {
+        $_SESSION[$error] = "Please enter the city"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($state) && $state == " ") {
+        $_SESSION[$error] = "Please enter the state"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($country) && $country == " ") {
+        $_SESSION[$error] = "Please enter the country"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($company_email) && $company_email == " ") {
+        $_SESSION[$error] = "Please select the company email"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($company_phone) && $company_phone == " ") {
+        $_SESSION[$error] = "Please enter the company phone number"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($company_mobile) && $company_mobile == " ") {
+        $_SESSION[$error] = "Please enter the company mobile number"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($terms_of_usage) && $terms_of_usage == " ") {
+        $_SESSION[$error] = "Please enter the company terms of usage"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($privacy_policy) && $privacy_policy == " ") {
+        $_SESSION[$error] = "Please enter the company privacy policy"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }  elseif (isset($company_logo) && $company_logo == " ") {
+        $_SESSION[$error] = "Please upload the company logo"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } 
+
+    //Check for valid first name
+    if (!preg_match("/^[A-Za-z]+$/", $city)) {
+        $_SESSION[$error] = "City field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    //Check for valid last name
+    if (!preg_match("/^[a-zA-Z]+$/", $state)) {
+        $_SESSION[$error] = "State field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    //Check if it is a valid phone number
+    if (!preg_match("/^\\+?[1-9][0-9]{7,14}$/", $company_mobile)) {
+        $_SESSION[$error] = "Please enter a valid mobile number";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+
+    }
+
+
+    //Check for valid social url
+    if (!empty($facebook) && !preg_match('/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i', $facebook)) {
+        $_SESSION[$error] = "Please enter a valid facebook url";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+    if (!empty($twitter) && !preg_match('/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i', $twitter)) {
+        $_SESSION[$error] = "Please enter a valid twitter url";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+    if (!empty($linkedin) && !preg_match('/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i', $linkedin)) {
+        $_SESSION[$error] = "Please enter a valid linkedin url";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+    if (!empty($instagram) && !preg_match('/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i', $linkedin)) {
+        $_SESSION[$error] = "Please enter a valid instagram url";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+
+    //check for valid email
+    if (!filter_var($company_email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION[$error] = "Please enter a valid company email address"; 
+        $_SESSION['msg_type'] = "danger";
+    }
+
+
+    if (empty($company_logo) || $company_logo == " ") {
+        $get_image = "SELECT company_logo FROM web_setting WHERE id=$id";
+        $get_image_query = mysqli_query($conn, $get_image);
+        //echo $get_image;
+        while ($row = mysqli_fetch_assoc($get_image_query)) {
+            $company_logo = $row['company_logo'];
+        }
+
+        //if there is no error then perfrom query
+        if ($error == "") {
+            $sqlUpdate  = "UPDATE web_setting SET ";
+            $sqlUpdate .= "company_address = '".$company_address."', city = '".$city."', 
+                            state = '".$state."', ";
+            $sqlUpdate .= "country = '".$country."', company_email = '".$company_email."', ";
+            $sqlUpdate .= "company_phone = '".$company_phone."', company_mobile = '".$company_mobile."', ";
+            $sqlUpdate .= "terms_of_usage = '".$terms_of_usage."', privacy_policy = '".$privacy_policy."', ";
+            $sqlUpdate .= "international_office = '".$international_office."', company_logo = '".$company_logo."', facebook = '".$facebook."', "; 
+            $sqlUpdate .= "twitter = '".$twitter."', linkedin = '".$linkedin."', ";
+            $sqlUpdate .= "instagram = '".$instagram."' WHERE id='$id' LIMIT 1 ";
+    
+            //echo $sqlUpdate;
+            $updateQuery = mysqli_query($conn, $sqlUpdate);
+
+            if ($updateQuery) {
+                // $new_id = mysqli_insert_id($conn);
+                
+                redirect_to('setting');
+            } else {
+                $_SESSION[$error] = "Unable to update settings";
+                $_SESSION['msg_type'] = "danger";
+                
+            }
+        
+            } else {
+                    $_SESSION[$error] = "Unable to update settings, please contact the support team!";
+                    $_SESSION['msg_type'] = "danger";
+                    // redirect_to('add-school');
+            }
+        
+        
+    } else {
+        //Processing Image
+        $target_dir = "images/logo/";
+        $company_logo = $target_dir . basename($_FILES["company_logo"]["name"]);
+        $imageFileType = strtolower(pathinfo($company_logo, PATHINFO_EXTENSION));
+        $company_logo_temp = $_FILES["company_logo"]["tmp_name"];
+
+        // Check if file already exists
+        if (file_exists($company_logo)) {
+            $_SESSION[$error] = "Sorry, this logo already exist.";
+            $_SESSION['msg_type'] = "danger";
+            return ($_SESSION[$error]);
+        }
+
+        // Allowed file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            $_SESSION[$error] = "Sorry, only JPG, JPEG and PNG files are allowed.";
+            $_SESSION['msg_type'] = "danger";
+            return ($_SESSION[$error]);
+        }
+
+        //if there is no error then perfrom query
+        if ($error == "") {
+            $sqlUpdate  = "UPDATE web_setting SET ";
+            $sqlUpdate .= "company_address = '".$company_address."', city = '".$city."', 
+                            state = '".$state."', ";
+            $sqlUpdate .= "country = '".$country."', company_email = '".$company_email."', ";
+            $sqlUpdate .= "company_phone = '".$company_phone."', company_mobile = '".$company_mobile."', ";
+            $sqlUpdate .= "terms_of_usage = '".$terms_of_usage."', privacy_policy = '".$privacy_policy."', ";
+            $sqlUpdate .= "international_office = '".$international_office."', company_logo = '".$company_logo."', facebook = '".$facebook."', "; 
+            $sqlUpdate .= "twitter = '".$twitter."', linkedin = '".$linkedin."', ";
+            $sqlUpdate .= "instagram = '".$instagram."' WHERE id='$id' LIMIT 1 ";
+
+            //echo $sqlUpdate;
+            $updateQuery = mysqli_query($conn, $sqlUpdate);
+
+            if ($updateQuery) {
+                // $new_id = mysqli_insert_id($conn);
+                move_uploaded_file($company_logo_temp, $company_logo);
+                redirect_to('setting');
+            } else {
+                $_SESSION[$error] = "Unable to update settings";
+                $_SESSION['msg_type'] = "danger";
+                
+            }
+        
+            } else {
+                    $_SESSION[$error] = "Unable to update settings, please contact the support team!";
+                    $_SESSION['msg_type'] = "danger";
+                    // redirect_to('add-school');
+            }
+        }
+}
+
+/**
+ * Function that delete a super admin
+ * 
+ * Delete all the details
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $id 
+ * 
+ * @return school
+ */
+function deleteProperty($id, $tables, $location) 
+{
+    global $conn;
+    global $error;
+    //echo "The id is " . $id;
+   
+        $get_image = "SELECT property_plan FROM {$tables} WHERE id=$id";
+            $get_image_query = mysqli_query($conn, $get_image);
+            //echo $get_image;
+            while ($row = mysqli_fetch_assoc($get_image_query)) {
+                $property_plan = $row['property_plan'];
+                unlink($property_plan);
+            }
+   
+        $delete_admin = "DELETE FROM {$tables} WHERE id=$id";
+        $delete_admin_query = mysqli_query($conn, $delete_admin);
+
+
+
+    if ($delete_admin_query) {
+        redirect_to($location);
+        
+    } else {
+        $_SESSION[$error] = "Unable to delete record.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+ 
+}
+
+/**
+ * Function that delete a super admin
+ * 
+ * Delete all the details
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $id 
+ * 
+ * @return school
+ */
+function deletePropertyImage($id, $tables, $location) 
+{
+    global $conn;
+    global $error;
+    //echo "The id is " . $id;
+   
+        $get_image = "SELECT property_image FROM {$tables} WHERE id=$id";
+            $get_image_query = mysqli_query($conn, $get_image);
+            //echo $get_image;
+            while ($row = mysqli_fetch_assoc($get_image_query)) {
+                $property_image = $row['property_image'];
+                unlink($property_image);
+            }
+   
+        $delete_admin = "DELETE FROM {$tables} WHERE id=$id";
+        $delete_admin_query = mysqli_query($conn, $delete_admin);
+
+
+
+    if ($delete_admin_query) {
+        redirect_to($location);
+        
+    } else {
+        $_SESSION[$error] = "Unable to delete image.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+ 
+}
+
+/**
+ * Function that Update agent details
+ * 
+ * Accept all the inputs
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $agent_name 
+ * @param string $email 
+ * 
+ * @return property agent
+ */
+
+function edit_property($property_name, $property_desc, $property_type, $sales_type, $property_price, 
+    $property_address, $bedrooms, $square_ft, $car_parking, $year_built, $dinning_room,  
+    $kitchen, $living_room, $master_bedroom, $other_room, $city, $state, $country, $swimming_pool, 
+    $terrace, $air_conditioning, $internet, $balcony, $cable_tv, $computer, $dishwasher, 
+    $near_green_zone, $near_church, $near_estate, $near_school, $near_hospital, $cofee_pot, $property_plan, $id) 
+{
+    global $conn;
+    global $error;
+
+    if (isset($property_name) && $property_name == " ") {
+        $_SESSION[$error] = "Please enter the property name"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($property_desc) && $property_desc == " ") {
+        $_SESSION[$error] = "Please enter property description"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($property_price) && $property_price == " ") {
+        $_SESSION[$error] = "Please enter property price"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($property_address) && $property_address == " ") {
+        $_SESSION[$error] = "Please enter property address"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($city) && $city == " ") {
+        $_SESSION[$error] = "Please enter property city"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }elseif (isset($state) && $state == " ") {
+        $_SESSION[$error] = "Please enter property state"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($country) && $country == " ") {
+        $_SESSION[$error] = "Please enter country located for the property"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($company_mobile) && $company_mobile == " ") {
+        $_SESSION[$error] = "Please enter the company mobile number"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } 
+
+    //Check for valid first name
+    if (!preg_match("/^[A-Za-z]+$/", $city)) {
+        $_SESSION[$error] = "City field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+    if (!preg_match("/^[A-Za-z]+$/", $state)) {
+        $_SESSION[$error] = "State field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    //Check for valid last name
+    if (!preg_match("/^[a-zA-Z]+$/", $country)) {
+        $_SESSION[$error] = "Country field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    $get_property_plan = "SELECT property_plan FROM tbl_properties WHERE id=$id";
+    $get_image_query = mysqli_query($conn, $get_property_plan);
+    //echo $get_image;
+    while ($row = mysqli_fetch_assoc($get_image_query)) {
+        $property_plan_database = $row['property_plan'];
+    }
+
+    echo $property_plan_database;
+    if (empty($property_plan) || $property_plan == " ") {
+        $get_image = "SELECT property_plan FROM tbl_properties WHERE id=$id";
+        $get_image_query = mysqli_query($conn, $get_image);
+        //echo $get_image;
+        while ($row = mysqli_fetch_assoc($get_image_query)) {
+            $property_plan = $row['property_plan'];
+        }
+
+        //if there is no error then perfrom query
+        if ($error == "") {
+            $sqlUpdate  = "UPDATE tbl_properties SET ";
+            $sqlUpdate .= "property_name = '".$property_name."', property_desc = '".$property_desc."', 
+                            property_type = '".$property_type."', sales_type = '".$sales_type."', ";
+            $sqlUpdate .= "property_price = '".$property_price."', property_address = '".$property_address."', ";
+            $sqlUpdate .= "bedrooms = '".$bedrooms."', square_ft = '".$square_ft."', ";
+            $sqlUpdate .= "car_parking = '".$car_parking."', year_built = '".$year_built."', ";
+            $sqlUpdate .= "dinning_room = '".$dinning_room."', kitchen = '".$kitchen."', living_room = '".$living_room."', "; 
+            $sqlUpdate .= "master_bedroom = '".$master_bedroom."', other_room = '".$other_room."', city = '".$city."', ";
+            $sqlUpdate .= "state = '".$state."', country = '".$country."', swimming_pool = '".$swimming_pool."', "; 
+            $sqlUpdate .= "terrace = '".$terrace."', air_conditioning = '".$air_conditioning."', ";
+            $sqlUpdate .= "internet = '".$internet."', balcony = '".$balcony."', cable_tv = '".$cable_tv."', "; 
+            $sqlUpdate .= "computer = '".$computer."', dishwasher = '".$dishwasher."', ";
+            $sqlUpdate .= "near_green_zone = '".$near_green_zone."', near_church = '".$near_church."', near_estate = '".$near_estate."', "; 
+            $sqlUpdate .= "near_school = '".$near_school."', near_hospital = '".$near_hospital."', ";
+            $sqlUpdate .= "cofee_pot = '".$cofee_pot."', property_plan = '".$property_plan."' WHERE id='$id' LIMIT 1 ";
+    
+            //echo $sqlUpdate;
+            $updateQuery = mysqli_query($conn, $sqlUpdate);
+
+            if ($updateQuery) {
+                // $new_id = mysqli_insert_id($conn);
+                
+                redirect_to('property-list');
+            } else {
+                $_SESSION[$error] = "Unable to update property";
+                $_SESSION['msg_type'] = "danger";
+                
+            }
+        
+            } else {
+                    $_SESSION[$error] = "Unable to update property, please contact the support team!";
+                    $_SESSION['msg_type'] = "danger";
+                    // redirect_to('add-school');
+            }
+        
+        
+    } else {
+        //Processing Image
+        $target_dir = "images/plan/";
+        $property_plan = $target_dir . basename($_FILES["property_plan"]["name"]);
+        $imageFileType = strtolower(pathinfo($property_plan, PATHINFO_EXTENSION));
+        $image_temp_name = $_FILES["property_plan"]["tmp_name"];
+
+        // Check if file already exists
+        if (file_exists($property_plan)) {
+            $_SESSION[$error] = "Sorry, this property plan already exist.";
+            $_SESSION['msg_type'] = "danger";
+            return ($_SESSION[$error]);
+        }
+
+        // Allowed file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            $_SESSION[$error] = "Sorry, only JPG, JPEG and PNG files are allowed.";
+            $_SESSION['msg_type'] = "danger";
+            return ($_SESSION[$error]);
+        }
+
+        //if there is no error then perfrom query
+        if ($error == "") {
+            $sqlUpdate  = "UPDATE tbl_properties SET ";
+            $sqlUpdate .= "property_name = '".$property_name."', property_desc = '".$property_desc."', 
+                            property_type = '".$property_type."', sales_type = '".$sales_type."', ";
+            $sqlUpdate .= "property_price = '".$property_price."', property_address = '".$property_address."', ";
+            $sqlUpdate .= "bedrooms = '".$bedrooms."', square_ft = '".$square_ft."', ";
+            $sqlUpdate .= "car_parking = '".$car_parking."', year_built = '".$year_built."', ";
+            $sqlUpdate .= "dinning_room = '".$dinning_room."', kitchen = '".$kitchen."', living_room = '".$living_room."', "; 
+            $sqlUpdate .= "master_bedroom = '".$master_bedroom."', other_room = '".$other_room."', city = '".$city."', ";
+            $sqlUpdate .= "state = '".$state."', country = '".$country."', swimming_pool = '".$swimming_pool."', "; 
+            $sqlUpdate .= "terrace = '".$terrace."', air_conditioning = '".$air_conditioning."', ";
+            $sqlUpdate .= "internet = '".$internet."', balcony = '".$balcony."', cable_tv = '".$cable_tv."', "; 
+            $sqlUpdate .= "computer = '".$computer."', dishwasher = '".$dishwasher."', ";
+            $sqlUpdate .= "near_green_zone = '".$near_green_zone."', near_church = '".$near_church."', near_estate = '".$near_estate."', "; 
+            $sqlUpdate .= "near_school = '".$near_school."', near_hospital = '".$near_hospital."', ";
+            $sqlUpdate .= "cofee_pot = '".$cofee_pot."', property_plan = '".$property_plan."' WHERE id='$id' LIMIT 1 ";
+
+            //echo $sqlUpdate;
+            $updateQuery = mysqli_query($conn, $sqlUpdate);
+
+            // Delete old image from directory
+            
+            
+
+            if ($updateQuery) {
+                unlink($property_plan_database);
+                move_uploaded_file($image_temp_name, $property_plan);
+                 
+                redirect_to('property-list');
+            } else {
+                $_SESSION[$error] = "Unable to update property";
+                $_SESSION['msg_type'] = "danger";
+                
+            }
+        
+            } else {
+                    $_SESSION[$error] = "Unable to update property, please contact the support team!";
+                    $_SESSION['msg_type'] = "danger";
+                    // redirect_to('add-school');
+            }
+        }
+    }
+
+
+/**
+ * Function that Update agent details
+ * 
+ * Accept all the inputs
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $agent_name 
+ * @param string $email 
+ * 
+ * @return add-property
+ */
+
+function addProperty($agent_id, $property_name, $property_desc, $property_type, $sales_type, $property_price, 
+    $property_address, $bedrooms, $square_ft, $car_parking, $year_built, $dinning_room,  
+    $kitchen, $living_room, $master_bedroom, $other_room, $city, $state, $country, $swimming_pool, 
+    $terrace, $air_conditioning, $internet, $balcony, $cable_tv, $computer, $dishwasher, 
+    $near_green_zone, $near_church, $near_estate, $near_school, $near_hospital, $cofee_pot, $property_plan) 
+{
+    global $conn;
+    global $error;
+
+    if (isset($property_name) && $property_name == " ") {
+        $_SESSION[$error] = "Please enter the property name"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($property_desc) && $property_desc == " ") {
+        $_SESSION[$error] = "Please enter property description"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($property_price) && $property_price == " ") {
+        $_SESSION[$error] = "Please enter property price"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($property_address) && $property_address == " ") {
+        $_SESSION[$error] = "Please enter property address"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($city) && $city == " ") {
+        $_SESSION[$error] = "Please enter property city"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }elseif (isset($state) && $state == " ") {
+        $_SESSION[$error] = "Please enter property state"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($country) && $country == " ") {
+        $_SESSION[$error] = "Please enter country located for the property"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } elseif (isset($company_mobile) && $company_mobile == " ") {
+        $_SESSION[$error] = "Please enter the company mobile number"; 
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    } 
+
+    //Check for valid first name
+    if (!preg_match("/^[A-Za-z]+$/", $city)) {
+        $_SESSION[$error] = "City field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+    if (!preg_match("/^[A-Za-z]+$/", $state)) {
+        $_SESSION[$error] = "State field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    //Check for valid last name
+    if (!preg_match("/^[a-zA-Z]+$/", $country)) {
+        $_SESSION[$error] = "Country field should only contain words.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+
+    //Processing Image
+    $target_dir = "images/plan/";
+    $property_plan = $target_dir . basename($_FILES["property_plan"]["name"]);
+    $imageFileType = strtolower(pathinfo($property_plan, PATHINFO_EXTENSION));
+    $image_temp_name = $_FILES["property_plan"]["tmp_name"];
+
+    //Check if image file is an actual image or fake image
+    $check = getimagesize($image_temp_name);
+    if ($check == false) {
+        $_SESSION[$error] = "Uploaded file is not an image.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    // Check if file already exists
+    if (file_exists($property_plan)) {
+        $_SESSION[$error] = "Sorry, this property plan already exist.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+
+    // Allowed file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        $_SESSION[$error] = "Sorry, only JPG, JPEG and PNG files are allowed.";
+        $_SESSION['msg_type'] = "danger";
+        return ($_SESSION[$error]);
+    }
+    
+
+    //if there is no error then perfrom query
+    if ($error == "") {
+        $sql = "SELECT * FROM tbl_properties ";
+        $sql .= "WHERE agent_id ='". $agent_id  ."' ";
+        $sql .= "AND property_address='". $property_address ."'";
+        //echo $sql;
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row > 0) {
+            $_SESSION[$error] = "This property already exist";
+            $_SESSION['msg_type'] = "danger";
+        } else {
+            
+            $sqlAdd  = "INSERT INTO tbl_properties ";
+            $sqlAdd .= "(agent_id, property_name, property_desc, property_type, sales_type, property_price, 
+                    property_address, bedrooms, square_ft, car_parking, year_built, dinning_room, kitchen, living_room,
+                    master_bedroom, other_room, city, state, country, swimming_pool, terrace, air_conditioning, internet,
+                    balcony, cable_tv, computer, dishwasher, near_green_zone, near_church, near_estate, near_school, 
+                    near_hospital, cofee_pot, property_plan) ";
+            $sqlAdd .= "VALUES ('". $agent_id ."', '". $property_name ."', '". $property_desc ."', '". $property_type ."', 
+                '". $sales_type ."', '". $property_price ."', '". $property_address ."', '". $bedrooms ."', 
+                '". $square_ft ."', '". $car_parking ."', '". $year_built ."', '". $dinning_room ."', '". $kitchen ."', '". $living_room ."',
+                '". $master_bedroom ."', '". $other_room ."', '". $city ."', '". $state ."', '". $country ."', 
+                '". $swimming_pool ."', '". $terrace ."', '". $air_conditioning ."', '". $internet ."', 
+                '". $balcony ."', '". $cable_tv ."', '". $computer ."', '". $dishwasher ."', 
+                '". $near_green_zone ."', '". $near_church ."', '". $near_estate ."', '". $near_school ."', 
+                '". $near_hospital ."', '". $cofee_pot ."', '". $property_plan ."')";
+            //echo $sqlAdd;
+            $adminQuery = mysqli_query($conn, $sqlAdd);
+           
+            if ($adminQuery) {
+                // $new_id = mysqli_insert_id($conn);
+                move_uploaded_file($image_temp_name, $property_plan);
+                redirect_to('property-list');
+            } else {
+                $_SESSION[$error] = "Error in adding property";
+                $_SESSION['msg_type'] = "danger";
+                redirect_to('add-property');
+            }
+        } 
+    } else {
+            $_SESSION[$error] = "Unable to add property, please contact the support team!";
+            $_SESSION['msg_type'] = "danger";
+            // redirect_to('add-school');
+}
+
+}
+
+
+ /**
+ * Function that add a new school
+ * 
+ * Accept all the inputs
+ * 
+ * @access public
+ * 
+ * @author Thephilus Menor
+ * 
+ * @param string $school_name 
+ * @param string $school_address 
+ * 
+ * @return school
+ */
+
+function addPropertyImage($agent_id, $property_id, $property_images) {
+    global $conn;
+    global $error;
+    
+     //Processing Image
+     $target_dir = "images/property/";
+     $property_image = $target_dir . basename($_FILES["property_images"]["name"]);
+     $imageFileType = strtolower(pathinfo($property_image, PATHINFO_EXTENSION));
+     $image_temp_name = $_FILES["property_images"]["tmp_name"];
+ 
+     //Check if image file is an actual image or fake image
+     $check = getimagesize($image_temp_name);
+     if ($check == false) {
+         $_SESSION[$error] = "Uploaded file is not an image.";
+         $_SESSION['msg_type'] = "danger";
+         return ($_SESSION[$error]);
+     }
+ 
+     // Check if file already exists
+     if (file_exists($property_image)) {
+         $_SESSION[$error] = "Sorry, this image already exist.";
+         $_SESSION['msg_type'] = "danger";
+         return ($_SESSION[$error]);
+     }
+ 
+     // Allowed file formats
+     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+         $_SESSION[$error] = "Sorry, only JPG, JPEG and PNG files are allowed.";
+         $_SESSION['msg_type'] = "danger";
+         return ($_SESSION[$error]);
+     }
+     
+ 
+     //if there is no error then perfrom query
+     if ($error == "") {
+
+             
+             $sqlAdd  = "INSERT INTO property_images ";
+             $sqlAdd .= "(agent_id, property_id, property_image) ";
+             $sqlAdd .= "VALUES ('". $agent_id ."', '". $property_id ."', '". $property_image ."')";
+             //echo $sqlAdd;
+             $adminQuery = mysqli_query($conn, $sqlAdd);
+            
+             if ($adminQuery) {
+                 // $new_id = mysqli_insert_id($conn);
+                 move_uploaded_file($image_temp_name, $property_image);
+                 redirect_to('property-images');
+             } else {
+                 $_SESSION[$error] = "Error in adding property image";
+                 $_SESSION['msg_type'] = "danger";
+                 redirect_to('add-property-image');
+  
+            }
+     } else {
+             $_SESSION[$error] = "Unable to add property image, please contact the support team!";
+             $_SESSION['msg_type'] = "danger";
+             // redirect_to('add-school');
+ }
+
+    
+}

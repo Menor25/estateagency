@@ -12,6 +12,8 @@
     require_once "function.php";
     require_once "functions.php";
     require_once "property.php";
+    require_once "property-images.php";
+    require_once "setting.php";
     require_once "agent.php";
     require_once "amenities.php";
     require_once "db_object.php";

@@ -6,6 +6,7 @@ RewriteRule ^home$ index.php [NC,L]
 RewriteRule ^about$ about.php [NC,L]
 RewriteRule ^contact$ contact.php [NC,L]
 RewriteRule ^properties$ properties.php [NC,L]
+RewriteRule ^property-view$ property-view.php [NC,L]
 RewriteRule ^blogs$ blogs.php [NC,L]
 
 

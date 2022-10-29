@@ -35,7 +35,7 @@
                         </div>
                     </li>
                     <!-- <li class="header">MAIN</li> -->
-                    <li class="active open"><a href="index.html"><i
+                    <li class="active open"><a href="home"><i
                                 class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
                     <li><a href="javascript:void(0);" class="menu-toggle"><i
                                 class="zmdi zmdi-city"></i><span>Property</span></a>
@@ -44,6 +44,8 @@
                             <!-- <li><a href="property-list3.html">3 Column</a></li>
                             <li><a href="property-list4.html">4 Column</a></li> -->
                             <li><a href="add-property">Add Property</a></li>
+                            <li><a href="add-property-image">Add Property Images</a></li>
+                            <li><a href="property-images">Property Image List</a></li>
                             <!-- <li><a href="property-detail">Property Detail</a></li> -->
                         </ul>
                     </li>
@@ -82,8 +84,8 @@
                     <li><a href="javascript:void(0);" class="menu-toggle"><i
                                 class="zmdi zmdi-brightness-high"></i><span>Settings</span></a>
                         <ul class="ml-menu">
-                            <li><a href="settings">Add New</a></li>
-                            <li><a href="update-settings">Update Settings</a></li>
+                            <li><a href="setting">Settings</a></li>
+                            <!-- <li><a href="update-settings">Update Settings</a></li> -->
                         </ul>
                     </li>
                     <li><a href="javascript:void(0);" class="menu-toggle"><i

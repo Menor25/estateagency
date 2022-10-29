@@ -1,4 +1,8 @@
+<?php
+  $settings = Setting::find_by_id(2);
+ 
 
+?>
   <!-- ======= Footer ======= -->
   <section class="section-footer">
     <div class="container">
@@ -6,20 +10,32 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
-              <h3 class="w-title-a text-brand">EstateAgency</h3>
+              <h3 class="w-title-a text-brand">Elema-Igie Ventures</h3>
             </div>
             <div class="w-body-a">
               <p class="w-text-a color-text-a">
-                Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
-                sed aute irure.
+                <?= $settings->company_address; ?><br> 
+                <?= $settings->city; ?>, <?= $settings->state; ?> State <br>
+                <?= $settings->country; ?>.
               </p>
             </div>
             <div class="w-footer-a">
               <ul class="list-unstyled">
+              <?php if (!empty($settings->company_email)){ ?>
                 <li class="color-a">
-                  <span class="color-text-a">Phone .</span> contact@example.com</li>
+                  <span class="color-text-a">Email: </span> <?= $settings->company_email; ?>
+                </li> 
+                <?php } ?>
+                <?php if (!empty($settings->company_phone)){ ?>
                 <li class="color-a">
-                  <span class="color-text-a">Email .</span> +54 356 945234</li>
+                  <span class="color-text-a">Phone: </span> <?= $settings->company_phone; ?>
+                </li>
+                <?php } ?>
+                <?php if (!empty($settings->company_mobile)){ ?>
+                  <li class="color-a">
+                  <span class="color-text-a">Mobile: </span> <?= $settings->company_mobile; ?>
+                </li>
+                <?php } ?>
               </ul>
             </div>
           </div>
@@ -33,19 +49,7 @@
               <div class="w-body-a">
                 <ul class="list-unstyled">
                   <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Agent Admin</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Careers</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="fa fa-angle-right"></i> <a href="#">Affiliate</a>
+                    <i class="fa fa-angle-right"></i> <a href="#">Terms of Service</a>
                   </li>
                   <li class="item-list-a">
                     <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
@@ -58,28 +62,24 @@
         <div class="col-sm-12 col-md-4 section-md-t3">
           <div class="widget-a">
             <div class="w-header-a">
-              <h3 class="w-title-a text-brand">International sites</h3>
+              <h3 class="w-title-a text-brand">International Office</h3>
             </div>
             <div class="w-body-a">
+              <p class="w-text-a color-text-a">
+                <?= $settings->international_office; ?><br> 
+
+              </p>
+            </div>
+            <div class="w-footer-a">
               <ul class="list-unstyled">
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Venezuela</a>
+ 
+               
+                <?php if (!empty($settings->company_phone)){ ?>
+                <li class="color-a">
+                  <span class="color-text-a">Phone: </span> <?= $settings->company_phone; ?>
                 </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">China</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Hong Kong</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Argentina</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Singapore</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Philippines</a>
-                </li>
+                <?php } ?>
+                
               </ul>
             </div>
           </div>
@@ -94,49 +94,52 @@
           <nav class="nav-footer">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="#">Home</a>
+                <a href="home">Home</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">About</a>
+                <a href="about">About</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Property</a>
+                <a href="properties">Property</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Blog</a>
+                <a href="blogs">Blog</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Contact</a>
+                <a href="contact">Contact</a>
               </li>
             </ul>
           </nav>
           <div class="socials-a">
             <ul class="list-inline">
+            <?php if (!empty($settings->facebook)){ ?>
               <li class="list-inline-item">
-                <a href="#">
+                <a href="<?= $settings->facebook; ?>" target="_blank">
                   <i class="fa fa-facebook" aria-hidden="true"></i>
                 </a>
               </li>
+              <?php } ?>
+              <?php if (!empty($settings->twitter)){ ?>
               <li class="list-inline-item">
-                <a href="#">
+                <a href="<?= $settings->twitter; ?>" target="_blank">
                   <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
               </li>
+              <?php } ?>
+              <?php if (!empty($settings->instagram)){ ?>
               <li class="list-inline-item">
-                <a href="#">
+                <a href="<?= $settings->instagram; ?>" target="_blank">
                   <i class="fa fa-instagram" aria-hidden="true"></i>
                 </a>
               </li>
+              <?php } ?>
+              <?php if (!empty($settings->linkedin)){ ?>
               <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                <a href="<?= $settings->linkedin; ?>" target="_blank">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
                 </a>
               </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-dribbble" aria-hidden="true"></i>
-                </a>
-              </li>
+              <?php } ?>
             </ul>
           </div>
           <div class="copyright-footer">
@@ -147,7 +150,7 @@
           </div>
           <div class="credits">
            
-            Designed by <a href="#">Theophilus Menor</a>
+            Designed by <a href="https://www.linkedin.com/in/theophilus-menor-a06b56b2">Theophilus Menor</a>
           </div>
         </div>
       </div>

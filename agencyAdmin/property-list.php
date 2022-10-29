@@ -6,6 +6,17 @@
     //print_r($properties);
     $sn = 1;
 ?>
+<?php
+    if (isset($_GET['delete'])) {
+        //Delete agent
+        $id = $_GET['delete'];
+        
+        $decoded_id = decodeString($id);
+    
+        deleteProperty($decoded_id, 'tbl_properties', 'property-list');
+    }
+
+?>
 <body class="theme-purple">
 
     <?php require_once "includes/loader.php"; ?>

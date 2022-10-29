@@ -2,7 +2,7 @@
 
 <?php
 //Add new property
-$property = new Property();
+// $property = new Property();
 //print_r($property);
 if(Is_Post_request()){
     $amenities = $_POST['amenity'];
@@ -56,44 +56,44 @@ if(Is_Post_request()){
        
     }
    
-    if($property) {
-        
-        $property->agent_id = $_SESSION['agent_id'];
-        $property->property_name = initialCap($_POST['property_name']);
-        $property->property_desc = initialCap($_POST['property_desc']);
-        $property->property_type = $_POST['property_type'];
-        $property->sales_type = $_POST['sales_type'];
-        $property->property_price = $_POST['property_price'];
-        $property->property_address = initialCap($_POST['property_address']);
-        $property->bedrooms = $_POST['bedrooms'];
-        $property->square_ft = $_POST['square_ft'];
-        $property->car_parking = $_POST['car_parking'];
-        $property->year_built = $_POST['year_built'];
-        $property->dinning_room = $_POST['dinning_room'];
-        $property->kitchen = $_POST['kitchen'];
-        $property->living_room = $_POST['living_room'];
-        $property->master_bedroom = $_POST['master_bedroom'];
-        $property->other_room = $_POST['other_room'];
-        $property->state = initialCap($_POST['state']);
-        $property->country = initialCap($_POST['country']);
-        $property->swimming_pool = $swimming_pool;
-        $property->terrace = $terrace;
-        $property->air_conditioning = $air_conditioning;
-        $property->internet = $internet;
-        $property->balcony = $balcony;
-        $property->cable_tv = $cable_tv;
-        $property->computer = $computer;
-        $property->dishwasher = $dishwasher;
-        $property->near_green_zone = $near_green_zone;
-        $property->near_church = $near_church;
-        $property->near_estate = $near_estate;
-        $property->near_school = $near_school;
-        $property->near_hospital = $near_hospital;
-        $property->cofee_pot = $cofee_pot;
+    addProperty(
+
+        $agent_id = $_SESSION['agent_id'],
+        $property_name = initialCap($_POST['property_name']),
+        $property_desc = initialCap($_POST['property_desc']),
+        $property_type = $_POST['property_type'],
+        $sales_type = $_POST['sales_type'],
+        $property_price = $_POST['property_price'],
+        $property_address = initialCap($_POST['property_address']),
+        $bedrooms = $_POST['bedrooms'],
+        $square_ft = $_POST['square_ft'],
+        $car_parking = $_POST['car_parking'],
+        $year_built = $_POST['year_built'],
+        $dinning_room = $_POST['dinning_room'],
+        $kitchen = $_POST['kitchen'],
+        $living_room = $_POST['living_room'],
+        $master_bedroom = $_POST['master_bedroom'],
+        $other_room = $_POST['other_room'],
+        $city = initialCap($_POST['city']),
+        $state = initialCap($_POST['state']),
+        $country = initialCap($_POST['country']),
+        $swimming_pool = $swimming_pool,
+        $terrace = $terrace,
+        $air_conditioning = $air_conditioning,
+        $internet = $internet,
+        $balcony = $balcony,
+        $cable_tv = $cable_tv,
+        $computer = $computer,
+        $dishwasher = $dishwasher,
+        $near_green_zone = $near_green_zone,
+        $near_church = $near_church,
+        $near_estate = $near_estate,
+        $near_school = $near_school,
+        $near_hospital = $near_hospital,
+        $cofee_pot = $cofee_pot,
+        $property_plan 	= $_FILES['property_plan']['name']
     
-        $property->set_file($_FILES['property_plan']);
-        $property->save_user_and_image();
-        }
+    );
         //print_r($amenities);
        //echo $property->swimming_pool;
 }
@@ -129,20 +129,35 @@ if(Is_Post_request()){
         </div>
         <div class="container-fluid">
             <div class="row clearfix">
+            <?php if (isset($_SESSION[$error])): ?>
+                            <div class="alert alert-<?= $_SESSION['msg_type']; ?>">
+                                <?php
+                                    echo $_SESSION[$error];
+                                    unset($_SESSION[$error]);
+
+                                ?>
+                            </div>
+                        <?php endif; ?>
                 <div class="col-lg-12">
                 <form action="" id="frmFileUpload" method="POST" enctype="multipart/form-data">
                     <div class="card">
                         <div class="header">
-                            <h2><strong>Basic</strong> Information <small>Description text here...</small> </h2>
+                            <h2><strong>Basic</strong> Information </h2>
                             
                         </div>
                         <div class="body">
                             <div class="row clearfix">
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Property Name"
                                          name="property_name" 
                                          value="<?php if(isset($property_name)){ echo $property_name;} ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="City"
+                                         name="city" value="<?php if(isset($city)){ echo $city;} ?>" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -368,6 +383,7 @@ if(Is_Post_request()){
                                         <div class="mb-3 mt-2">
                                             <label class="form-label" for="formFileLg">Property Plan</label>
                                             <input name="property_plan" type="file" id="formFileLg" 
+                                            value="<?php if(isset($property_plan)){ echo $property_plan;} ?>" 
                                             class="form-control form-control-lg" multiple />
                                         </div>
                                     </form>
